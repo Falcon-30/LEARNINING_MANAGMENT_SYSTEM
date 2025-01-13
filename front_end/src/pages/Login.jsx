@@ -18,7 +18,6 @@ import {
 } from '@/features/api/authApi'
 import { Loader2 } from 'lucide-react'
 import { toast } from 'sonner'
-import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
   const [signUpInput, setSignUpInput] = useState({
@@ -65,7 +64,6 @@ const Login = () => {
     await action(inputData)
   }
 
-  const navigate=useNavigate();
   useEffect(() => {
 
     if(registerSuccess && registerData){
@@ -73,8 +71,6 @@ const Login = () => {
     }
     if(loginSuccess && loginData){
       toast.success(loginData.message || "Login SuccessFul")
-      navigate("/")
-
     }
     if(registerError){
       toast.error(registerError.data.message || "Signup Failed")
@@ -92,7 +88,7 @@ const Login = () => {
     registerError
   ])
   return (
-    <div className='flex items-center justify-center w-full mt-20'>
+    <div className='flex items-center justify-center w-full'>
       <Tabs defaultValue='account' className='w-[400px]'>
         <TabsList className='grid w-full grid-cols-2'>
           <TabsTrigger value='signup'>SignUp</TabsTrigger>
